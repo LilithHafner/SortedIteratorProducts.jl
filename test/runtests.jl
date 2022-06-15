@@ -95,10 +95,15 @@ performance
 @testset "CachedIterators.jl" begin
     y = SortedIteratorProducts.cached(x^2 for x in 1:typemax(Int))
     @test y[10] == 100
-    @test y[1] == 1
+    @test y[begin] == 1
     @test y[5] == 25
     @test y[11] == 121
     @test_throws BoundsError y[0]
     @test_throws BoundsError y[-4]
     @test_throws MethodError y[2.5]
+    @test collect(take(y, 17)) == (1:17).^2
+    @test eltype(y) == eltype(x^2 for x in 1:typemax(Int))
+    @test_broken eltype(y) == Int
+    @test eltype(SortedIteratorProducts.cached(zip(1:3, 5:6))) == eltype(zip(1:3, 5:6)) == Tuple{Int, Int}
+    @test SortedIteratorProducts.cached(1:12) === 1:12
 end
