@@ -87,7 +87,6 @@ end
 Base.IteratorSize(::Type{SortedIteratorProduct{Tuple{}, F}}) where F = Base.HasLength()
 Base.length(sip::SortedIteratorProduct) = prod(length, sip.sources, init=1)
 
-Base.IteratorEltype(::Type{SortedIteratorProduct}) = Base.HasEltype()
 Base.eltype(::Type{SortedIteratorProduct{T, F}}) where {T, F} = Tuple{eltype.(fieldtypes(T))...}
 
 
