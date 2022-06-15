@@ -22,11 +22,9 @@ of `b`.
 ```jldoctest
 julia> using ..SortedIteratorProducts, Base.Iterators
 
-julia> A = Iterators.Count(1, 1)
-Base.Iterators.Count{Int64, Int64}(1, 1)
+julia> A = Iterators.Count(1, 1);
 
-julia> B = Iterators.Count(3, 2)
-Base.Iterators.Count{Int64, Int64}(3, 2)
+julia> B = Iterators.Count(3, 2);
 
 julia> x = SortedIteratorProduct(sum, A, B);
 
