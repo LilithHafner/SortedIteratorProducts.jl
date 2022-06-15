@@ -99,7 +99,6 @@ end
 cached(iterator) = Cached(eltype(iterator)[], Base.Iterators.Stateful(iterator))
 cached(x::AbstractArray) = x
 
-Base.eltype(::Type{Cached{T}}) where T = T
 Base.firstindex(x::Cached) = firstindex(x.cache)
 
 function Base.checkbounds(::Type{Bool}, x::Cached, i::Integer)
